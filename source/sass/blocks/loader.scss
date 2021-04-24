@@ -15,10 +15,11 @@
     }
   }
 
-  &--animate-frame-1 {
+  &--init {
     .loader__logo {
       opacity: 1;
-      animation: logo-first-animation $loader-animation-settings forwards;
+      animation: logo-first-animation $loader-animation-settings forwards,
+        logo-default-placement $default-transition-settings $logo-default-move-delay forwards;
     }
 
     .loader__init {
@@ -76,6 +77,13 @@
     top: 25px;
     width: 192px;
     height: 24px;
+  }
+}
+
+@keyframes logo-default-placement {
+  to {
+    left: 35px;
+    transform: translateX(0);
   }
 }
 

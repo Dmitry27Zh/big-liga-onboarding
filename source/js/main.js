@@ -15,10 +15,12 @@ iosVhFix();
 initModals();
 
 const loaderElement = document.querySelector('.loader');
+const contentElement = document.querySelector('.content');
 
 window.addEventListener('load', () => {
   loaderElement.classList.add('loader--preload');
-  /* setTimeout(() => {
-    loaderElement.classList.add('loader--animate-frame-1');
-  }, 5000); */
+  setTimeout(() => {
+    loaderElement.classList.add('loader--init');
+    contentElement.classList.add('content--init');
+  }, 5000);
 });
