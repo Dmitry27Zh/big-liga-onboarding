@@ -13,6 +13,12 @@ iosVhFix();
 // ---------------------------------
 
 initModals();
-setTimeout(() => {
-  document.querySelector('.loader').classList.add('loader--animate-frame-1');
-}, 600);
+
+const loaderElement = document.querySelector('.loader');
+
+window.addEventListener('load', () => {
+  loaderElement.classList.add('loader--preload');
+  /* setTimeout(() => {
+    loaderElement.classList.add('loader--animate-frame-1');
+  }, 5000); */
+});

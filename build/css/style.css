@@ -538,12 +538,19 @@ button,
   height: 100vh;
   height: calc(100 * var(--vh, 1vh));
   min-height: 450px; }
+  .loader--preload .loader__logo {
+    -webkit-animation: loader-child-appearance 0.9s ease-in forwards;
+            animation: loader-child-appearance 0.9s ease-in forwards; }
+  .loader--preload .loader__init {
+    -webkit-animation: loader-child-appearance 0.9s ease-in 0.9s forwards, pulsation 2s linear 3.6s infinite;
+            animation: loader-child-appearance 0.9s ease-in 0.9s forwards, pulsation 2s linear 3.6s infinite; }
   .loader--animate-frame-1 .loader__logo {
-    top: 25px;
-    width: 192px;
-    height: 24px; }
+    opacity: 1;
+    -webkit-animation: logo-first-animation 0.8s ease forwards;
+            animation: logo-first-animation 0.8s ease forwards; }
   .loader--animate-frame-1 .loader__init {
-    opacity: 0; }
+    -webkit-animation: loader-child-disappearance 0.8s ease;
+            animation: loader-child-disappearance 0.8s ease; }
 
 .loader__logo {
   position: absolute;
@@ -552,8 +559,7 @@ button,
   width: 800px;
   height: 100px;
   margin: auto;
-  -webkit-transition: width 0.8s ease, height 0.8s ease, top 0.8s ease, left 0.8s ease;
-  transition: width 0.8s ease, height 0.8s ease, top 0.8s ease, left 0.8s ease;
+  opacity: 0;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%); }
 
@@ -567,9 +573,59 @@ button,
   margin: auto;
   font-size: 24px;
   text-align: center;
-  opacity: 1;
-  -webkit-transition: opacity 0.8s ease;
-  transition: opacity 0.8s ease; }
+  opacity: 0; }
+
+@-webkit-keyframes loader-child-appearance {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes loader-child-appearance {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@-webkit-keyframes loader-child-disappearance {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@keyframes loader-child-disappearance {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
+
+@-webkit-keyframes logo-first-animation {
+  to {
+    top: 25px;
+    width: 192px;
+    height: 24px; } }
+
+@keyframes logo-first-animation {
+  to {
+    top: 25px;
+    width: 192px;
+    height: 24px; } }
+
+@-webkit-keyframes pulsation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+
+@keyframes pulsation {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 
 /* @media (hover: hover), screen and (min-width: 0\0) {
   &:hover,

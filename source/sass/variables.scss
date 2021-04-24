@@ -23,7 +23,10 @@ $font-family--neue-machina:         "Neue Machina", "Arial", sans-serif;
 //---------------------------------
 
 $default-transition-settings:       0.3s ease;
-$loader-transition-settings:        0.8s ease;
+$loader-pre-animation-duration:    0.9s;
+$loader-pre-animation-function:    ease-in;
+$loader-animation-settings:        0.8s ease;
+$pulsation-animation-settings:      2s linear;
 $modal-transition-settings:         0.6s cubic-bezier(0.55, 0, 0.1, 1);
 
 // Viewports
