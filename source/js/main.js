@@ -13,3 +13,6 @@ iosVhFix();
 // ---------------------------------
 
 initModals();
+setTimeout(() => {
+  document.querySelector('.loader').classList.add('loader--animate-frame-1');
+}, 600);
