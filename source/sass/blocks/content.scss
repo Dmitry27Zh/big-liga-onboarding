@@ -1,12 +1,19 @@
 .content {
-  opacity: 0;
   position: fixed;
+  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   height: calc(100 * var(--vh, 1vh));
   min-height: 450px;
+  opacity: 0;
+
+  @include viewport--md {
+    padding: 0;
+    padding-top: 74px;
+    opacity: 1;
+  }
 
   &--init {
     opacity: 1;
@@ -21,12 +28,31 @@
       opacity: 0;
     }
   }
+
+  &--init-first {
+    .content__inner {
+      transform: translateX(-100vw);
+    }
+  }
+
+  &--init-second {
+    .content__inner {
+      transform: translateX(0);
+    }
+  }
 }
 
 .content__inner {
   position: relative;
   width: 100%;
   height: 100%;
+
+  @include viewport--md {
+    display: flex;
+    width: 200vw;
+    transform: translateX(-100%);
+    transition: transform $content-transition-settings;
+  }
 }
 
 .content__lead,
@@ -35,6 +61,13 @@
   position: absolute;
   transition: opacity $content-transition-settings,
     transform $content-transition-settings;
+
+  @include viewport--md {
+    position: static;
+    flex-shrink: 0;
+    width: 100vw;
+    padding-left: 35px;
+  }
 }
 
 .content__lead {
@@ -43,7 +76,14 @@
   width: 562px;
   transform: translateX(-100%);
 
+  @include viewport--md {
+    width: 100vw;
+    padding-top: 246px;
+    transform: none;
+  }
+
   p {
+    width: 562px;
     margin: 0;
     font-size: 96px;
     line-height: 96px;
@@ -57,7 +97,20 @@
   width: 352px;
   transform: translateX(100%);
 
+  @include viewport--md {
+    order: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    padding-top: 161px;
+    color: $color-default-white;
+    background-color: $color-neon-blue;
+    transform: none;
+  }
+
   p {
+    width: 352px;
     margin: 0;
     font-size: 30px;
     line-height: 40px;
@@ -70,6 +123,12 @@
   margin-bottom: 35px;
 }
 
+.content__sub-pic-colorize {
+  @include viewport--md {
+    fill: $color-default-white;
+  }
+}
+
 .content__letter {
   bottom: 0;
   z-index: -1;
@@ -77,6 +136,10 @@
   width: 100%;
   opacity: 1;
   transform: translateY(100%);
+
+  @include viewport--md {
+    display: none;
+  }
 }
 
 .content__letter-icon {
