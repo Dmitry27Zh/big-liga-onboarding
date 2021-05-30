@@ -377,6 +377,7 @@ body {
 body {
   width: 100%;
   height: 100%;
+  min-width: 610px;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -536,6 +537,7 @@ button,
   width: 100%;
   height: 100vh;
   height: calc(100 * var(--vh, 1vh));
+  /* stylelint-disable-line */
   min-height: 450px; }
   .loader--preload .loader__logo {
     -webkit-animation: loader-child-appearance 0.9s ease-in forwards;
@@ -553,6 +555,7 @@ button,
 
 .loader__logo {
   position: absolute;
+  z-index: 10;
   top: 50%;
   left: 50%;
   width: 800px;
@@ -576,6 +579,7 @@ button,
   right: 0;
   bottom: 13vh;
   bottom: calc(13 * var(--vh, 1vh));
+  /* stylelint-disable-line */
   width: 300px;
   margin: auto;
   font-size: 24px;
@@ -656,34 +660,55 @@ button,
 
 .content {
   position: fixed;
-  z-index: -1;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   height: calc(100 * var(--vh, 1vh));
+  /* stylelint-disable-line*/
   min-height: 450px;
-  opacity: 0; }
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; }
   @media (max-width: 1023px) {
     .content {
       padding: 0;
       padding-top: 74px;
       opacity: 1; } }
+  .content--resize * {
+    -webkit-transition: none !important;
+    transition: none !important;
+    /* stylelint-disable-line */ }
   .content--init {
-    opacity: 1; }
-    .content--init .content__lead,
-    .content--init .content__sub,
-    .content--init .content__letter {
-      -webkit-transform: translate(0);
-              transform: translate(0); }
-    .content--init .content__letter {
-      opacity: 0; }
-  .content--init-first .content__inner {
-    -webkit-transform: translateX(-100vw);
-            transform: translateX(-100vw); }
-  .content--init-second .content__inner {
-    -webkit-transform: translateX(0);
-            transform: translateX(0); }
+    visibility: visible;
+    pointer-events: auto; }
+    @media (min-width: 1024px) {
+      .content--init {
+        opacity: 1; }
+        .content--init .content__lead,
+        .content--init .content__sub,
+        .content--init .content__letter {
+          -webkit-transform: translate(0);
+                  transform: translate(0); }
+        .content--init .content__letter {
+          opacity: 0; } }
+    @media (max-width: 1023px) {
+      .content--init {
+        padding: 0;
+        padding-top: 74px;
+        opacity: 1; }
+        .content--init .content__inner {
+          visibility: visible;
+          -webkit-transform: translateX(-100vw);
+                  transform: translateX(-100vw);
+          -webkit-transition: -webkit-transform 0.8s ease;
+          transition: -webkit-transform 0.8s ease;
+          transition: transform 0.8s ease;
+          transition: transform 0.8s ease, -webkit-transform 0.8s ease; } }
+  @media (max-width: 1023px) {
+    .content--page-2 .content__inner {
+      -webkit-transform: translateX(0);
+              transform: translateX(0); } }
 
 .content__inner {
   position: relative;
@@ -695,12 +720,9 @@ button,
       display: -ms-flexbox;
       display: flex;
       width: 200vw;
-      -webkit-transform: translateX(-100%);
-              transform: translateX(-100%);
-      -webkit-transition: -webkit-transform 0.8s ease;
-      transition: -webkit-transform 0.8s ease;
-      transition: transform 0.8s ease;
-      transition: transform 0.8s ease, -webkit-transform 0.8s ease; } }
+      visibility: hidden;
+      -webkit-transform: translateX(-200vw);
+              transform: translateX(-200vw); } }
 
 .content__lead,
 .content__sub,
@@ -743,8 +765,8 @@ button,
   top: 120px;
   right: 0;
   width: 352px;
-  -webkit-transform: translateX(100%);
-          transform: translateX(100%); }
+  -webkit-transform: translateX(100vw);
+          transform: translateX(100vw); }
   @media (max-width: 1023px) {
     .content__sub {
       -webkit-box-ordinal-group: 0;
@@ -790,7 +812,8 @@ button,
   width: 100%;
   opacity: 1;
   -webkit-transform: translateY(100%);
-          transform: translateY(100%); }
+          transform: translateY(100%);
+  pointer-events: none; }
   @media (max-width: 1023px) {
     .content__letter {
       display: none; } }
